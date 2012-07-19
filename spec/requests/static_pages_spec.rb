@@ -9,6 +9,20 @@ describe "Static Pages" do
     it { should have_selector "h1", :text => heading }
   end
 
+  it "should have the right link on the layout" do
+    visit root_path
+    click_link "About"
+    should have_selector "title", :text => full_title("About Us")
+    click_link "Help"
+    should have_selector "title", :text => full_title("Help")
+    click_link "Contact"
+    should have_selector "title", :text => full_title("Contact")
+    click_link "sample app"
+    should have_selector "title", :text => full_title("")
+    click_link "Sign up now!"
+    should have_selector "title", :text => full_title("Sign up")
+  end
+
   describe "Home page" do
     before { visit root_path }
     let(:heading) { "Sample App" }
