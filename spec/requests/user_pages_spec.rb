@@ -23,7 +23,6 @@ describe "User pages" do
 
           it { should have_selector "title", text: "Sign up" }
           it { should have_selector "div", text: /The form contains \d* error(s?)/ }
-          it { should have_selector "li", text: "Password digest can't be blank" }
           it { should have_selector "li", text: "Name can't be blank" }
           it { should have_selector "li", text: "Email can't be blank" }
           it { should have_selector "li", text: "Email is invalid" }
