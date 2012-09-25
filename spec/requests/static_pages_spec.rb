@@ -45,6 +45,23 @@ describe "Static Pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      describe "should show the proper count of two microposts" do
+        it { should have_content "2 microposts" }
+      end
+
+      describe "should show the proper count of the only one micropost" do
+        before { click_link "delete" }
+        it { should have_content "1 micropost" }
+      end
+
+      describe "should show the proper count of zero microposts" do
+        before do 
+          click_link "delete"
+          click_link "delete"
+        end
+        it { should have_content "0 microposts" }
+      end
     end
   end
 
