@@ -39,5 +39,15 @@ describe "MicropostPages" do
         expect { click_link "delete" }.to change(Micropost, :count).by(-1)
       end
     end
+
+    describe "as not to author of the post" do
+      let!(:author) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: author)
+        visit user_path(author)
+      end
+
+      it { should_not have_link "delete" }
+    end
   end
 end
